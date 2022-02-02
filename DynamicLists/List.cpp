@@ -1,6 +1,6 @@
 #include "List.h"
 
-ReferenceNode List::CreateComponent(int data)
+List::ReferenceNode List::CreateComponent(int data)
 {
     ReferenceNode NewComponent = new Node;
     NewComponent->data = data;
@@ -8,7 +8,7 @@ ReferenceNode List::CreateComponent(int data)
     return NewComponent;
 }
 
-ReferenceNode List::GetComponentByValue(int data)
+List::ReferenceNode List::GetComponentByValue(int data)
 {
     ReferenceNode reference = this->head;
     while (reference) {

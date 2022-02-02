@@ -1,14 +1,16 @@
 #pragma once
 #include <iostream>
-struct Node
-{
-	int data;
-	Node* next;
-};
-typedef Node* ReferenceNode;
 
 class List
 {
+protected:
+	struct Node
+	{
+		int data;
+		Node* next;
+	};
+
+	typedef Node* ReferenceNode;
 private:
 	ReferenceNode head;
 public:
