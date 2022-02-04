@@ -12,17 +12,19 @@ protected:
 		Node* previous;
 	};
 
-	typedef Node* ReferneceNodeBi;
+	typedef Node* ReferenceNodeBi;
 
 private:
-	ReferneceNodeBi head;
+	ReferenceNodeBi head;
 public:
 	BidirectionalList() :List(){
 		this->head = nullptr;
 	}
-	ReferneceNodeBi CreateComponent(int data);
-	void AddComponent(ReferneceNodeBi Node);
-	void AddComponentAfter(ReferneceNodeBi Where, ReferneceNodeBi Node);
+	ReferenceNodeBi CreateComponent(int data) override;
+	ReferenceNodeBi GetComponentByValue(int data) override;
+	void AddComponent(ReferenceNodeBi Node);
+	void AddComponentAfter(ReferenceNodeBi Where, ReferenceNodeBi Node);
+	void DeleteComponent(ReferenceNodeBi BeingDeletedReference);
 	void ShowAllList();
 };
 

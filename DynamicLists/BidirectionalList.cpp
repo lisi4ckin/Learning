@@ -1,13 +1,49 @@
 #include "BidirectionalList.h"
 
-BidirectionalList::ReferneceNodeBi BidirectionalList::CreateComponent(int data) {
-	ReferneceNodeBi NewComponent = new Node;
+BidirectionalList::ReferenceNodeBi BidirectionalList::CreateComponent(int data) {
+	ReferenceNodeBi NewComponent = new Node;
 	NewComponent->data = data;
 	NewComponent->next = NewComponent->previous= nullptr;
 	return NewComponent;
 }
 
-void BidirectionalList::AddComponentAfter(ReferneceNodeBi Where, ReferneceNodeBi Node){
+BidirectionalList::ReferenceNodeBi BidirectionalList::GetComponentByValue(int data)
+{
+	ReferenceNodeBi reference = this->head;
+	while (reference) {
+		if (reference->data == data) {
+			return reference;
+		}
+		reference = reference->next;
+	}
+	return nullptr;
+}
+
+
+void BidirectionalList::DeleteComponent(ReferenceNodeBi BeingDeletedReference)
+{
+	ReferenceNodeBi reference = this->head;
+	if (BeingDeletedReference == reference) {
+		this->head = BeingDeletedReference->next;
+	}
+	else {
+		while (reference) {
+			if (reference->next == BeingDeletedReference) {
+				if (BeingDeletedReference->next) {
+					reference->next = BeingDeletedReference->next;
+					reference->next->previous = reference;
+				}
+				else {
+					reference->next = reference->next->previous = nullptr;
+				}
+				delete BeingDeletedReference;
+			}
+			reference = reference->next;
+		}
+	}
+}
+
+void BidirectionalList::AddComponentAfter(ReferenceNodeBi Where, ReferenceNodeBi Node){
 	Node->next = Where->next;
 	if (Where->next) {
 		Where->next->previous = Node;
@@ -16,12 +52,12 @@ void BidirectionalList::AddComponentAfter(ReferneceNodeBi Where, ReferneceNodeBi
 	Where->next = Node;
 }
 
-void BidirectionalList::AddComponent(ReferneceNodeBi Node) {
+void BidirectionalList::AddComponent(ReferenceNodeBi Node) {
 	if (this->head == nullptr) {
 		this->head = Node;
 	}
 	else {
-		ReferneceNodeBi refernece = this->head;
+		ReferenceNodeBi refernece = this->head;
 		while (refernece->next) {
 			refernece = refernece->next;
 		}
@@ -31,7 +67,7 @@ void BidirectionalList::AddComponent(ReferneceNodeBi Node) {
 
 void BidirectionalList::ShowAllList()
 {
-	ReferneceNodeBi reference = this->head;
+	ReferenceNodeBi reference = this->head;
 	while (reference) {
 		std::cout << reference->data << " ";
 		reference = reference->next;

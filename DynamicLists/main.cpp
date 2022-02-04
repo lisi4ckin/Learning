@@ -15,7 +15,13 @@ int main() {
 	}
 	MyList.AddComponentAfter(MyList.GetComponentByValue(1), MyList.CreateComponent(5));
 	MyList.ShowAllList();
+	MyList.DeleteComponent(MyList.GetComponentByValue(5));
 	cout << endl;
+	MyList.ShowAllList();
+	cout << endl;
+	MyBiList.ShowAllList();
+	cout << endl;
+	MyBiList.DeleteComponent(MyBiList.GetComponentByValue(0));
 	MyBiList.ShowAllList();
 	return 0;
 }

@@ -25,12 +25,21 @@ void List::AddComponentAfter(ReferenceNode where, ReferenceNode node){
     where->next = node;
 }
 
-void List::SwapComponents(ReferenceNode first, ReferenceNode second){
-    ReferenceNode AuxilaryReference = first;
-    first->data = second->data;
-    first->next = second;
-    second->next = AuxilaryReference;
-    second->data = AuxilaryReference->data;
+void List::DeleteComponent(ReferenceNode BeingDeletedNode)
+{
+    ReferenceNode reference = this->head;
+    if (BeingDeletedNode == reference) {
+        this->head = BeingDeletedNode->next;
+    }
+    else {
+        while (reference) {
+            if (reference->next == BeingDeletedNode) {
+                reference->next = (BeingDeletedNode->next) ? BeingDeletedNode->next : nullptr;
+                delete BeingDeletedNode;
+            }
+            reference = reference->next;
+        }
+    }
 }
 
 void List::AddComponent(ReferenceNode Node)
