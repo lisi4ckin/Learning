@@ -28,6 +28,20 @@ void Tree::AddComponent(ReferenceNode Component)
 	}
 }
 
+Tree::ReferenceNode Tree::GetComponentByValue(int data)
+{	
+	ReferenceNode reference = this->Root;
+	while (reference) {
+		if (reference->data == data) {
+			return reference;
+		}
+		else {
+			reference = (data > reference->data) ? reference->right : reference->left;
+		}
+	}
+	return nullptr;
+}
+
 Tree::ReferenceNode Tree::CreateComponent(int data)
 {
 	ReferenceNode component = new Node;
