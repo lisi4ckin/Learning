@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <fstream>
 class Tree
 {
 protected:
@@ -12,6 +14,7 @@ private:
 	ReferenceNode Root;
 public:
 	Tree() { this->Root = nullptr; }
+	Tree(std::string nameOfFile);
 	void AddComponent(ReferenceNode Component);
 	void DeleteComponent(int key);
 	ReferenceNode CreateComponent(int data);

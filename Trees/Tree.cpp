@@ -1,6 +1,21 @@
 #include "Tree.h"
 #include <iostream>
 #include <string>
+#include <fstream>
+
+Tree::Tree(std::string nameOfFile) {
+	this->Root = nullptr;
+	std::ifstream input("in.txt");
+	if (!input.is_open()) {
+		std::cout << "Error! \n";
+		return;
+	}
+	while (!input.eof()) {
+		int Element;
+		input >> Element;
+		AddComponent(CreateComponent(Element));
+	}
+}
 
 void Tree::AddComponent(ReferenceNode Component)
 {

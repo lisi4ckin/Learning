@@ -15,5 +15,10 @@ int main() {
 	    cout << "Component not found!" << endl;
 	}
 	BinaryTree.ShowTree(BinaryTree.GetRoot(), 0);
+
+	Tree BinTree("input");
+	BinTree.ShowTree(BinTree.GetRoot(), 0);
+
+	system("Pause");
 	return 0;
 }
