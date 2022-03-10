@@ -1,6 +1,6 @@
 #include "Tree.h"
-
 #include <iostream>
+#include <string>
 
 void Tree::AddComponent(ReferenceNode Component)
 {
@@ -29,13 +29,16 @@ void Tree::AddComponent(ReferenceNode Component)
 }
 
 Tree::ReferenceNode Tree::GetComponentByValue(int data)
-{	
+{
 	ReferenceNode reference = this->Root;
+	std::string path = "Root ";
 	while (reference) {
 		if (reference->data == data) {
+		    std::cout << path << std::endl;
 			return reference;
 		}
 		else {
+		    path += (data > reference->data) ? "right " : "left ";
 			reference = (data > reference->data) ? reference->right : reference->left;
 		}
 	}
@@ -48,6 +51,34 @@ Tree::ReferenceNode Tree::CreateComponent(int data)
 	component->left = component->right = nullptr;
 	component->data = data;
 	return component;
+}
+
+void Tree::DeleteComponent(int key)
+{
+    ReferenceNode reference = this->Root;
+    ReferenceNode parentReference = nullptr;
+    while(reference && reference->data != key){
+        parentReference = reference;
+        if (reference->data > key){
+            reference = reference->left;
+        }
+        else{
+            reference = reference->right;
+        }
+    }
+    if (!reference){
+        return;
+    }
+    if (!reference->left){
+        if (parentReference && parentReference->left == reference){
+            parentReference->left = reference->right;
+        }
+        if (parentReference && parentReference->right == reference){
+            parentReference->right = reference->right;
+        }
+        delete reference;
+        return;
+    }
 }
 
 Tree::ReferenceNode Tree::GetRoot()

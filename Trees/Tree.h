@@ -13,7 +13,7 @@ private:
 public:
 	Tree() { this->Root = nullptr; }
 	void AddComponent(ReferenceNode Component);
-	void DeleteComponent();
+	void DeleteComponent(int key);
 	ReferenceNode CreateComponent(int data);
 	ReferenceNode GetRoot();
 	ReferenceNode GetComponentByValue(int data);
