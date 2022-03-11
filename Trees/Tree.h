@@ -20,6 +20,7 @@ public:
 	ReferenceNode CreateComponent(int data);
 	ReferenceNode GetRoot();
 	ReferenceNode GetComponentByValue(int data);
-	void ShowTree(ReferenceNode reference, int height);
+	void WriteTreeInFile(ReferenceNode reference, std::ofstream& out);
+	void ShowTree(ReferenceNode reference, int height, int &count);
 };
 

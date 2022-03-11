@@ -101,14 +101,23 @@ Tree::ReferenceNode Tree::GetRoot()
 	return this->Root;
 }
 
-void Tree::ShowTree(ReferenceNode reference, int height)
+void Tree::WriteTreeInFile(ReferenceNode reference, std::ofstream &out) {
+	if (reference) {
+		out << reference->data << " ";
+		WriteTreeInFile(reference->right, out);
+		WriteTreeInFile(reference->left, out);
+	}
+}
+
+void Tree::ShowTree(ReferenceNode reference, int height, int &count)
 {
 	if (reference) {
-		ShowTree(reference->right, height + 1);
+		ShowTree(reference->right, height + 1, count);
 		for (int i = 0; i < 5 * height; i++) {
 			std::cout << ' ';
 		}
 		std::cout << reference->data << std::endl;
-		ShowTree(reference->left, height + 1);
+		++count;
+		ShowTree(reference->left, height + 1, count);
 	}
 }
