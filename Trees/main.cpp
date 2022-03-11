@@ -17,6 +17,11 @@ int main() {
 	}
 	BinaryTree.ShowTree(BinaryTree.GetRoot(), 0, count);
 	std::cout << "List count is: " << count << std::endl;
+	
+	if (BinaryTree.IsBalanced(BinaryTree.GetRoot()))
+		cout << "Is balanced" << endl;
+	else
+		cout << "Not balanced" << endl;
 
 	count = 0;
 	Tree BinTree("output");

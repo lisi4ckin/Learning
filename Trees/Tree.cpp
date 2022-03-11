@@ -1,7 +1,26 @@
 #include "Tree.h"
 #include <iostream>
+#include <algorithm> 
 #include <string>
 #include <fstream>
+
+int Tree::CheckTreeHeight(ReferenceNode reference)
+{
+	if (!reference) {
+		return 0;
+	}
+	int leftHeightTree = CheckTreeHeight(reference->left);
+	if (leftHeightTree == -1) return -1;
+
+	int rightHeightTree = CheckTreeHeight(reference->right);
+	if (rightHeightTree == -1) return -1;
+
+	int differenceHeight = leftHeightTree - rightHeightTree;
+	if (abs(differenceHeight) > 1) return -1;
+	else {
+		return std::max(leftHeightTree, rightHeightTree) + 1;
+	}
+}
 
 Tree::Tree(std::string nameOfFile) {
 	this->Root = nullptr;
@@ -58,6 +77,14 @@ Tree::ReferenceNode Tree::GetComponentByValue(int data)
 		}
 	}
 	return nullptr;
+}
+
+bool Tree::IsBalanced(ReferenceNode reference)
+{
+	if (CheckTreeHeight(GetRoot()) == -1)
+		return false;
+	else
+		return true;
 }
 
 Tree::ReferenceNode Tree::CreateComponent(int data)
